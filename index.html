@@ -4,9 +4,32 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Clone</title>
+	<link rel="stylesheet" type="text/css" href="./index.css">
 </head>
 <body>
-	<div id="root"></div>
+	<div id="root" class="container">
+		<div class="row">
+			<div class="column">
+				<section>
+					<h2>Create New User</h2>
+					<div>
+						<input id="username" type="text" name="username" placeholder="Username">
+						<button id="create-user" disabled>Create</button>
+					</div>
+				</section>
+				<section>
+					<h2>Registered Users</h2>
+					<div id="users"></div>
+				</section>
+			</div>
+			<div class="column">
+				<section>
+					<h2>Current State</h2>
+					<div id="state-payload"></div>
+				</section>
+			</div>
+		</div>
+	</div>
 	<script src="./redux.js"></script>
 	<script src="./index.js"></script>
 </body>
