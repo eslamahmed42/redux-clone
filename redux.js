@@ -25,13 +25,34 @@ const createStore = (reducer, state) => {
 
 	/**
 	 * Dispatches an action. This is the only way to trigger a state change.
+	 * After dispatching an action, all the subscribers are notified.
 	 */
-	const dispatch = action => {};
+	const dispatch = action => {
+		current = reducer(current, action);
+		notify();
+	};
 
 	/**
 	 * Subscribe to state updates.
+	 *
+	 * 1. Add the subscriber to the subscribers set.
+	 * 2. Return a function to unsubscribe by removing the subscriber.
 	 */
-	const subscribe = subscriber => {};
+	const subscribe = subscriber => {
+		subscribers.add(subscriber);
+		return () => {
+			subscribers.delete(subscriber);
+		};
+	};
+
+	/**
+	 * Notifies the subscribers that there is a state update.
+	 */
+	const notify = () => {
+		subscribers.forEach(subscriber => {
+			subscriber();
+		});
+	};
 
 	/**
 	 * The Redux API.
